@@ -28,3 +28,4 @@ D:\4952\Lab1Zodiac\obj\Debug\net8.0\refint\Lab1Zodiac.dll
 D:\4952\Lab1Zodiac\obj\Debug\net8.0\Lab1Zodiac.pdb
 D:\4952\Lab1Zodiac\obj\Debug\net8.0\Lab1Zodiac.genruntimeconfig.cache
 D:\4952\Lab1Zodiac\obj\Debug\net8.0\ref\Lab1Zodiac.dll
+D:\4952\Lab1Zodiac\obj\Debug\net8.0\Lab1Zodiac.sourcelink.json
