@@ -22,15 +22,17 @@
         </div>
     </div>
 
-    <div class="alert alert-success container mt-5" style="width: fit-content;">
-        @if (Model.ZodiacSign != null)
-        {
+    @if (Model.ZodiacSign != null)
+    {
+        <div class="alert alert-success container mt-5" style="width: fit-content;">
             <p id='zodiacText'>Your zodiac is: <b>@(char.ToUpper(Model.ZodiacSign[0]) +
                 Model.ZodiacSign.Substring(1))</b></p>
             <img id="zodiacImage" class="img-fluid" src="~/images/@(Model.ZodiacSign.ToLower()).png" />
+        </div>
 
-        }
-    </div>
+
+    }
+
 
 </div>
 
