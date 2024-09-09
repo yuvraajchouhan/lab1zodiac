@@ -1,25 +1,39 @@
 ﻿@page
 @model IndexModel
-<form method="post">
-    <div>
-        <label for="year">Enter a Year:</label>
-        <input type="number" id="year" name="year" min="1900" max="@DateTime.Now.Year + 1" required />
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post" class="border p-4 shadow-sm rounded">
+                <div class="form-group">
+                    <label for="year">Enter a Year:</label>
+                    <input type="number" id="year" name="year" min="1900" max="@DateTime.Now.Year + 1"
+                        class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary mr-2">Get Zodiac</button>
+                    <button type="reset" class="btn btn-success" onclick="clearImage()">Clear</button>
+                </div>
+                <div id="error-message" class="alert alert-danger d-none">Year must be between 1900 and next year.
+                    Please try again.</div>
+            </form>
+        </div>
     </div>
-    <br>
-    <div>
-        <button type="submit">Submit</button>
-        <button type="reset" onclick="clearImage()">Clear</button>
+
+    <div class="alert alert-success container mt-5" style="width: fit-content;">
+        @if (Model.ZodiacSign != null)
+        {
+            <p id='zodiacText'>Your zodiac is: <b>@(char.ToUpper(Model.ZodiacSign[0]) +
+                Model.ZodiacSign.Substring(1))</b></p>
+            <img id="zodiacImage" class="img-fluid" src="~/images/@(Model.ZodiacSign.ToLower()).png" />
+
+        }
     </div>
-</form>
-<br>
-<div>
-    @if (Model.ZodiacSign != null)
-    {
-        <p id='zodiacText'>Your zodiac is: <b>@(char.ToUpper(Model.ZodiacSign[0]) + Model.ZodiacSign.Substring(1))</b></p>
-        <br>
-        <img id="zodiacImage" src="~/images/@(Model.ZodiacSign.ToLower()).png" />
-    }
+
 </div>
+
 <style>
     .no-outline {
         outline: none;
@@ -37,7 +51,16 @@
         imageElement.classList.add("no-outline");
     }
 
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1)
-    }
+    document.querySelector("form").addEventListener("submit", function (event) {
+        const yearInput = document.getElementById("year").value;
+        const currentYear = new Date().getFullYear();
+        const errorMessage = document.getElementById("error-message");
+
+        if (yearInput < 1900 || yearInput > currentYear + 1) {
+            event.preventDefault();
+            errorMessage.classList.remove("d-none");
+        } else {
+            errorMessage.classList.add("d-none");
+        }
+    });
 </script>
